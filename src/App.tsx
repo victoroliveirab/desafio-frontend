@@ -1,5 +1,19 @@
+import { useAuthState } from 'shared/hooks';
+import AuthProvider from 'shared/providers/auth';
+
 function App() {
-  return <div>Hello, world!</div>;
+  const state = useAuthState();
+  return (
+    <div>
+      {state.user ? JSON.stringify(state.user, null, 4) : 'not logged in'}
+    </div>
+  );
 }
 
-export default App;
+export default function Wrapper() {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}

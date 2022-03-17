@@ -32,6 +32,7 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/react-in-jsx-scope': 'off',
     'react/jsx-filename-extension': 'off',
+    'react/jsx-no-useless-fragment': 'off',
     'import/extensions': [
       'error',
       'ignorePackages',
