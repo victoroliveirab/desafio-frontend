@@ -1,19 +1,17 @@
-import { useAuthState } from 'shared/hooks';
+import { BrowserRouter } from 'react-router-dom';
 import AuthProvider from 'shared/providers/auth';
+import Pages from 'pages';
+import Header from 'components/Header';
 
 function App() {
-  const state = useAuthState();
   return (
-    <div>
-      {state.user ? JSON.stringify(state.user, null, 4) : 'not logged in'}
-    </div>
+    <BrowserRouter>
+      <AuthProvider>
+        <Header />
+        <Pages />
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
-export default function Wrapper() {
-  return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
-  );
-}
+export default App;
