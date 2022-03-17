@@ -5,14 +5,40 @@ Object {
   "asFragment": [Function],
   "baseElement": <body>
     <div>
+      <div
+        data-auto_select="true"
+        data-callback="ptLoginCallback"
+        data-cancel_on_tap_outside="false"
+        data-context="signin"
+        data-moment_callback="ptNotifyCallback"
+        data-ux_mode="popup"
+        id="g_id_onload"
+      />
+      <div
+        id="g_id_signin"
+        style="width: 200px; position: absolute; right: 40px; top: 20px;"
+      />
       <div>
-        Hello, world!
+        not logged in
       </div>
     </div>
   </body>,
   "container": <div>
+    <div
+      data-auto_select="true"
+      data-callback="ptLoginCallback"
+      data-cancel_on_tap_outside="false"
+      data-context="signin"
+      data-moment_callback="ptNotifyCallback"
+      data-ux_mode="popup"
+      id="g_id_onload"
+    />
+    <div
+      id="g_id_signin"
+      style="width: 200px; position: absolute; right: 40px; top: 20px;"
+    />
     <div>
-      Hello, world!
+      not logged in
     </div>
   </div>,
   "debug": [Function],
