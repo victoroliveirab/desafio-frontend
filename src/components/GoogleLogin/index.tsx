@@ -58,25 +58,25 @@ function GoogleLogin() {
     <>
       {!user && (
         <>
-          <div
-            id="g_id_onload"
-            data-client_id={clientId}
-            data-context="signin"
-            data-ux_mode="popup"
-            data-callback="ptLoginCallback"
-            data-auto_select="true"
-            data-cancel_on_tap_outside="false"
-            data-moment_callback="ptNotifyCallback"
-          />
-          <div
-            id="g_id_signin"
-            style={{
-              width: 200,
-              position: 'absolute',
-              right: 40,
-              top: 20,
-            }}
-          />
+          {!showSignInButton ? (
+            <div
+              id="g_id_onload"
+              data-client_id={clientId}
+              data-context="signin"
+              data-ux_mode="popup"
+              data-callback="ptLoginCallback"
+              data-auto_select="true"
+              data-cancel_on_tap_outside="false"
+              data-moment_callback="ptNotifyCallback"
+            />
+          ) : (
+            <div
+              id="g_id_signin"
+              style={{
+                marginTop: -3,
+              }}
+            />
+          )}
         </>
       )}
     </>

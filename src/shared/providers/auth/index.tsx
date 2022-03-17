@@ -1,5 +1,4 @@
 import { createContext, Dispatch, useReducer } from 'react';
-import GoogleLogin from 'components/GoogleLogin';
 import initialState from './state';
 import reducer from './reducer';
 import type { IAuthProvider, IAuthState } from './types';
@@ -16,7 +15,6 @@ function AuthProvider({ children }: IAuthProvider) {
   return (
     <AuthStateContext.Provider value={state}>
       <AuthDispatchContext.Provider value={dispatch}>
-        <GoogleLogin />
         {children}
       </AuthDispatchContext.Provider>
     </AuthStateContext.Provider>

@@ -1,0 +1,38 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  width: calc(100vw - 2 * 10px);
+  overflow: visible;
+}
+
+.menu {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.menu > a + a {
+  margin-left: 10px;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+}
+
+.header-logo svg {
+  height: 40px;
+  width: 40px;
+}
+
+.header-logo h1 {
+  font-size: 1rem;
+  margin: 0;
+  margin-left: 5px;
+  margin-top: 5px;
+}

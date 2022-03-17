@@ -15,27 +15,29 @@ function PrivatePage({ children }: { children: JSX.Element }) {
 
 function Pages() {
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/channels" element={<ChannelsPage />} />
-      <Route
-        path="/history"
-        element={
-          <PrivatePage>
-            <HistoryPage />
-          </PrivatePage>
-        }
-      />
-      <Route
-        path="/upload"
-        element={
-          <PrivatePage>
-            <UploadPage />
-          </PrivatePage>
-        }
-      />
-      <Route path="/videos" element={<VideosPage />} />
-    </Routes>
+    <main>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/channels" element={<ChannelsPage />} />
+        <Route
+          path="/history"
+          element={
+            <PrivatePage>
+              <HistoryPage />
+            </PrivatePage>
+          }
+        />
+        <Route
+          path="/upload"
+          element={
+            <PrivatePage>
+              <UploadPage />
+            </PrivatePage>
+          }
+        />
+        <Route path="/videos" element={<VideosPage />} />
+      </Routes>
+    </main>
   );
 }
 
