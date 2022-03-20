@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useViewport } from 'shared/hooks';
 import { YoutubeVideo } from 'api/videos';
-import historyStorage from 'lib/history';
+import videosStorage from 'lib/history-storage/videos';
 
 type LocationState = {
   videoInfo: YoutubeVideo;
@@ -16,12 +16,8 @@ export default function VideoPage() {
   const { videoInfo } = location.state as LocationState;
 
   useEffect(() => {
-    if (videoId === videoInfo.id) {
-      console.log(videoInfo);
-      // historyStorage.putNewEntry({
-      //   id,
-      //   title,
-      // })
+    if (videoInfo) {
+      videosStorage.putNewEntry(videoInfo);
     }
   }, [videoId, videoInfo]);
 

@@ -1,10 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { videosServices } from 'api';
-import { VideoCard } from 'components';
+import { VideosList } from 'components';
 import type { YoutubeVideo } from 'api/videos';
 import { useIntersectionDom } from 'shared/hooks';
-
-import styles from './styles.module.css';
 
 const MAX_ELEMENTS = 96;
 
@@ -38,11 +36,7 @@ function HomePage() {
 
   return (
     <>
-      <div className={styles['videos-list']}>
-        {videos.map((video) => (
-          <VideoCard key={video.id} videoInfo={video} />
-        ))}
-      </div>
+      <VideosList videos={videos} />
       <p ref={refBottom} className="text-center">
         All rights reserved
       </p>
