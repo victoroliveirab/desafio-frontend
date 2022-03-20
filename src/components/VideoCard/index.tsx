@@ -1,4 +1,5 @@
 import Avatar from '@mui/material/Avatar';
+import { useNavigate } from 'react-router-dom';
 import { YoutubeVideo } from 'api/videos';
 import {
   formatViewCount,
@@ -12,17 +13,23 @@ interface IVideoCard {
 }
 
 function VideoCard({ videoInfo }: IVideoCard) {
+  const navigate = useNavigate();
   const thumbnailSource = getBestResolutionThumbUrl(
     videoInfo.snippet.thumbnails
   );
   const views = `${formatViewCount(videoInfo.statistics.viewCount)} views`;
+  const watchVideo = () => {
+    navigate(`/videos/${videoInfo.id}`);
+  };
   return (
     <div className={styles['video-container']}>
-      <img
-        src={thumbnailSource}
-        className={styles['video-thumb']}
-        alt={videoInfo.snippet.title}
-      />
+      <div onClick={watchVideo}>
+        <img
+          src={thumbnailSource}
+          className={styles['video-thumb']}
+          alt={videoInfo.snippet.title}
+        />
+      </div>
       <div className={styles['video-info']}>
         <Avatar alt="channel" src={Logo} />
         <div className={styles['video-info__text']}>

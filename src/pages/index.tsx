@@ -4,6 +4,7 @@ import ChannelsPage from './channels';
 import HistoryPage from './history';
 import HomePage from './home';
 import UploadPage from './upload';
+import VideoPage from './video';
 import VideosPage from './videos';
 
 function PrivatePage({ children }: { children: JSX.Element }) {
@@ -36,6 +37,7 @@ function Pages() {
           }
         />
         <Route path="/videos" element={<VideosPage />} />
+        <Route path="/videos/:videoId" element={<VideoPage />} />
       </Routes>
     </main>
   );
