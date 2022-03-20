@@ -1,85 +1,45 @@
-import { useCallback, useEffect, useState } from 'react';
-import { userFromJwt } from 'shared/helpers/jwt';
+import api, { openIdServices } from 'api';
 import { useAuth, useGoogleAuth } from 'shared/hooks';
-import type { GoogleLoginResponse, GoogleNotification } from './types';
+import type { IAuthUser } from 'shared/providers/auth/types';
+import type { OpenIdResponse } from './types';
 
 const clientId = process.env.REACT_APP_CLIENT_ID as string;
-
-function shouldShowSignInButton(payload: GoogleNotification) {
-  return (
-    ['suppressed_by_user', 'opt_out_or_no_session'].includes(payload.j) ||
-    ['user_cancel', 'tap_outside'].includes(payload.l)
-  );
-}
 
 function GoogleLogin() {
   const {
     state: { user },
-    actions: { setToken, setUser },
+    actions: { setUser },
   } = useAuth();
-  const [showSignInButton, setShowSignInButton] = useState(false);
   const { accounts } = useGoogleAuth();
 
-  const handleSuccessLogin = useCallback(
-    ({ credential }: GoogleLoginResponse) => {
-      setToken(`Bearer ${credential}`);
-      const userDetails = userFromJwt(credential);
-      setUser({
-        givenName: userDetails.given_name,
-        picture: userDetails.picture,
-        email: userDetails.email,
+  const requestAccessToken = () => {
+    if (accounts?.oauth2) {
+      const client = accounts.oauth2.initTokenClient({
+        client_id: clientId,
+        scope: 'https://www.googleapis.com/auth/youtube.readonly',
+        callback: (response: OpenIdResponse) => {
+          const { access_token: accessToken } = response;
+          api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+          openIdServices.getProfileInfo().then(({ data }) => {
+            const userData: IAuthUser = {
+              email: data.email,
+              givenName: data.given_name,
+              picture: data.picture,
+            };
+            setUser(userData);
+          });
+        },
       });
-    },
-    [setToken, setUser]
-  );
-
-  const handleNotification = (payload: GoogleNotification) => {
-    if (shouldShowSignInButton(payload)) setShowSignInButton(true);
+      client.requestAccessToken();
+    }
   };
 
-  useEffect(() => {
-    window.ptLoginCallback = handleSuccessLogin;
-    window.ptNotifyCallback = handleNotification;
-  }, [handleSuccessLogin]);
-
-  useEffect(() => {
-    if (showSignInButton) {
-      accounts?.id.renderButton(
-        document.getElementById('g_id_signin') as HTMLElement,
-        {
-          theme: 'outline',
-          size: 'large',
-        }
-      );
-    }
-  }, [accounts?.id, showSignInButton]);
-
-  return (
-    <>
-      {!user && (
-        <>
-          {!showSignInButton ? (
-            <div
-              id="g_id_onload"
-              data-client_id={clientId}
-              data-context="signin"
-              data-ux_mode="popup"
-              data-callback="ptLoginCallback"
-              data-auto_select="true"
-              data-cancel_on_tap_outside="false"
-              data-moment_callback="ptNotifyCallback"
-            />
-          ) : (
-            <div
-              id="g_id_signin"
-              style={{
-                marginTop: -3,
-              }}
-            />
-          )}
-        </>
-      )}
-    </>
+  return user ? (
+    <></>
+  ) : (
+    <button type="button" onClick={requestAccessToken}>
+      Login
+    </button>
   );
 }
 
