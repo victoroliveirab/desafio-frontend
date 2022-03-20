@@ -46,12 +46,20 @@ export interface YoutubeVideo {
 }
 
 export type GetMostPopular = YoutubeApi<YoutubeVideo>;
+export type GetByPageToken = YoutubeApi<YoutubeVideo>;
+
+const mostPopularQuery =
+  'part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=12';
 
 export default function videosService(api: AxiosInstance) {
   return {
     getMostPopular: async () =>
       api.get<GetMostPopular>(
-        `${prefix}/videos?key=${googleKey}&part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=12`
+        `${prefix}/videos?key=${googleKey}&${mostPopularQuery}`
+      ),
+    getByPageToken: async (pageToken: string) =>
+      api.get<GetByPageToken>(
+        `${prefix}/videos?key=${googleKey}&${mostPopularQuery}&pageToken=${pageToken}`
       ),
   };
 }
