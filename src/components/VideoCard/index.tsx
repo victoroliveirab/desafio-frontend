@@ -19,7 +19,11 @@ function VideoCard({ videoInfo }: IVideoCard) {
   );
   const views = `${formatViewCount(videoInfo.statistics.viewCount)} views`;
   const watchVideo = () => {
-    navigate(`/videos/${videoInfo.id}`);
+    navigate(`/videos/${videoInfo.id}`, {
+      state: {
+        videoInfo,
+      },
+    });
   };
   return (
     <div className={styles['video-container']}>
