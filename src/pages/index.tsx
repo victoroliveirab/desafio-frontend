@@ -19,15 +19,15 @@ function Pages() {
     <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/channels" element={<ChannelsPage />} />
         <Route
-          path="/history"
+          path="/channels"
           element={
             <PrivatePage>
-              <HistoryPage />
+              <ChannelsPage />
             </PrivatePage>
           }
         />
+        <Route path="/history" element={<HistoryPage />} />
         <Route
           path="/upload"
           element={
