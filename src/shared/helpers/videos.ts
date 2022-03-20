@@ -1,7 +1,5 @@
 import { VideoThumbnails } from 'api/videos';
 
-// const EMPTY_THUMB = ['', 0];
-
 export function getBestResolutionThumbUrl(thumbnails: VideoThumbnails) {
   const options = Object.entries(thumbnails);
   if (options.length === 0) return '';
