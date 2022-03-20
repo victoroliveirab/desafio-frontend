@@ -1,0 +1,9 @@
+.videos-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.videos-list > * + * {
+  margin-top: 15px;
+}
