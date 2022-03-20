@@ -19,6 +19,7 @@ export interface IGoogle {
         }
       );
     };
+    oauth2: any; // TODO: type me
   };
 }
 declare global {
