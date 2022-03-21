@@ -69,9 +69,11 @@ export default function videosService(api: AxiosInstance) {
       api.get<GetByPageToken>(
         `${prefix}/videos?key=${googleKey}&${mostPopularQuery}&pageToken=${pageToken}`
       ),
-    getByKeyword: async (keyword: string) =>
+    getByKeyword: async (keyword: string, pageToken?: string) =>
       api.get<GetByKeyword>(
-        `${prefix}/search?&key=${googleKey}&part=snippet&maxResults=12&type=video&q=${keyword}`
+        `${prefix}/search?&key=${googleKey}&part=snippet&maxResults=12&type=video&q=${keyword}&pageToken=${
+          pageToken || ''
+        }`
       ),
   };
 }
