@@ -1,5 +1,5 @@
-import { headerFromJwt, userFromJwt } from 'shared/helpers/jwt';
-import sampleJwt from '__tests__/__mocks__/jwt';
+import { headerFromJwt, userFromJwt } from '.';
+import sampleJwt from './__mocks__';
 
 describe('Helpers: JWT', () => {
   it('should decode jwt header', () => {
