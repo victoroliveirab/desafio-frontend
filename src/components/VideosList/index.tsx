@@ -10,9 +10,10 @@ interface IVideosList {
 function VideosList({ videos }: IVideosList) {
   return (
     <div className={styles['videos-list']}>
-      {videos.map((video) => (
-        <VideoCard key={video.id} videoInfo={video} />
-      ))}
+      {videos.map((video) => {
+        const id = typeof video.id === 'string' ? video.id : video.id.videoId;
+        return <VideoCard key={id} videoInfo={video} />;
+      })}
     </div>
   );
 }

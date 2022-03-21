@@ -38,15 +38,23 @@ export interface VideoStatistics {
   viewCount: string;
 }
 
+export type YoutubeVideoId =
+  | {
+      kind: string;
+      videoId: string;
+    }
+  | string;
+
 export interface YoutubeVideo {
-  id: string;
-  contentDetails: VideoContentDetails;
+  id: YoutubeVideoId;
+  contentDetails?: VideoContentDetails;
   snippet: VideoSnippet;
-  statistics: VideoStatistics;
+  statistics?: VideoStatistics;
 }
 
 export type GetMostPopular = YoutubeApi<YoutubeVideo>;
 export type GetByPageToken = YoutubeApi<YoutubeVideo>;
+export type GetByKeyword = YoutubeApi<YoutubeVideo>;
 
 const mostPopularQuery =
   'part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=12';
@@ -60,6 +68,10 @@ export default function videosService(api: AxiosInstance) {
     getByPageToken: async (pageToken: string) =>
       api.get<GetByPageToken>(
         `${prefix}/videos?key=${googleKey}&${mostPopularQuery}&pageToken=${pageToken}`
+      ),
+    getByKeyword: async (keyword: string) =>
+      api.get<GetByKeyword>(
+        `${prefix}/search?&key=${googleKey}&part=snippet&maxResults=12&type=video&q=${keyword}`
       ),
   };
 }

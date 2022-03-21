@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import Avatar from '@mui/material/Avatar';
 import { useNavigate } from 'react-router-dom';
 import { YoutubeVideo } from 'api/videos';
@@ -17,7 +18,14 @@ function VideoCard({ videoInfo }: IVideoCard) {
   const thumbnailSource = getBestResolutionThumbUrl(
     videoInfo.snippet.thumbnails
   );
-  const views = `${formatViewCount(videoInfo.statistics.viewCount)} views`;
+  const subtitle = useMemo(() => {
+    const stringBuilder = [videoInfo.snippet.channelTitle];
+    if (videoInfo.statistics)
+      stringBuilder.push(
+        `${formatViewCount(videoInfo.statistics.viewCount)} views`
+      );
+    return stringBuilder.join('•');
+  }, [videoInfo.snippet.channelTitle, videoInfo.statistics]);
   const watchVideo = () => {
     navigate(`/videos/${videoInfo.id}`, {
       state: {
@@ -38,7 +46,7 @@ function VideoCard({ videoInfo }: IVideoCard) {
         <Avatar alt="channel" src={Logo} />
         <div className={styles['video-info__text']}>
           <h2>{videoInfo.snippet.title}</h2>
-          <h4>{`${videoInfo.snippet.channelTitle} • ${views}`}</h4>
+          <h4>{subtitle}</h4>
         </div>
       </div>
     </div>

@@ -1,13 +1,13 @@
 import { persistItem, retrieveItem } from 'shared/helpers/local-storage';
 
-export interface IStore {
-  id: string;
-}
-
-export default class HistoryStorage<T extends IStore> {
+export default class HistoryStorage<T> {
   private store: T[];
 
-  constructor(readonly key: string, readonly limit: number = 10) {
+  constructor(
+    readonly key: string,
+    readonly idGetter: (item: T) => string,
+    readonly limit: number = 10
+  ) {
     this.store = retrieveItem(this.key, []);
   }
 
@@ -20,10 +20,14 @@ export default class HistoryStorage<T extends IStore> {
     persistItem(this.key, this.store);
   }
 
-  putNewEntry(entry: T) {
-    const entryIndex = this.store.findIndex(
-      (storeEntry) => storeEntry.id === entry.id
+  private findIndexById(id: string) {
+    return this.store.findIndex(
+      (storeEntry) => this.idGetter(storeEntry) === id
     );
+  }
+
+  putNewEntry(entry: T) {
+    const entryIndex = this.findIndexById(this.idGetter(entry));
     if (entryIndex === -1) {
       this.setHistory([entry, ...this.store]);
       return;
@@ -36,9 +40,7 @@ export default class HistoryStorage<T extends IStore> {
   }
 
   removeEntryById(entryId: string) {
-    const entryIndex = this.store.findIndex(
-      (storeEntry) => storeEntry.id === entryId
-    );
+    const entryIndex = this.findIndexById(entryId);
     if (entryIndex === -1) return;
     this.setHistory([
       ...this.store.slice(0, entryIndex),

@@ -25,7 +25,7 @@ const initialState = [item1, item2];
 describe('history-storage', () => {
   beforeEach(() => {
     localStorage.setItem(KEY, JSON.stringify(initialState));
-    storage = new HistoryStorage<DummyData>('dummy');
+    storage = new HistoryStorage<DummyData>('dummy', (item) => item.id);
   });
   describe('get', () => {
     test('should be able to retrieve items', () => {
