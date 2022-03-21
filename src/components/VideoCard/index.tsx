@@ -24,7 +24,7 @@ function VideoCard({ videoInfo }: IVideoCard) {
       stringBuilder.push(
         `${formatViewCount(videoInfo.statistics.viewCount)} views`
       );
-    return stringBuilder.join('•');
+    return stringBuilder.join(' • ');
   }, [videoInfo.snippet.channelTitle, videoInfo.statistics]);
   const watchVideo = () => {
     navigate(`/videos/${videoInfo.id}`, {
