@@ -1,6 +1,6 @@
 import { PREFIX } from 'shared/helpers/local-storage';
 import HistoryStorage from '.';
-import { DummyData } from './__mocks__';
+import { DummyData } from '__mocks__/history-storage';
 
 let storage: HistoryStorage<DummyData>;
 const KEY = `${PREFIX}dummy`;

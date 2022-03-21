@@ -27,7 +27,7 @@ function VideoCard({ videoInfo }: IVideoCard) {
   };
   return (
     <div className={styles['video-container']}>
-      <div onClick={watchVideo}>
+      <div data-testid="thumbnail-wrapper" onClick={watchVideo}>
         <img
           src={thumbnailSource}
           className={styles['video-thumb']}
