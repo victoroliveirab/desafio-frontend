@@ -8,7 +8,9 @@ export interface ChannelSnippet {
   publishedAt: string;
   title: string;
   description: string;
-  channelId: string;
+  resourceId: {
+    channelId: string;
+  };
   thumbnails: {
     [size: string]: {
       url: string;
