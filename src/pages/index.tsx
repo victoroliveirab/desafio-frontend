@@ -1,5 +1,6 @@
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useAuthState } from 'shared/hooks';
+import ChannelPage from './channel';
 import ChannelsPage from './channels';
 import HistoryPage from './history';
 import HomePage from './home';
@@ -27,6 +28,7 @@ function Pages() {
             </PrivatePage>
           }
         />
+        <Route path="/channels/:channelId" element={<ChannelPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route
           path="/upload"
