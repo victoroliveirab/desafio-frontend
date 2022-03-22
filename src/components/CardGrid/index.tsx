@@ -8,7 +8,7 @@ export interface ICardGrid {
 
 function CardGrid({ data }: ICardGrid) {
   return (
-    <div className={styles['videos-list']}>
+    <div className={styles.grid}>
       {data.map((element) => (
         <Card key={element.data.id} data={element.data} />
       ))}
