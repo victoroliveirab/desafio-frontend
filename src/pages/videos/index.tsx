@@ -34,7 +34,7 @@ function VideosPage() {
   }, [available, keyword, intersecting, nextPageToken, trigger]);
 
   return (
-    <div>
+    <>
       <div className={styles['videos-searchfield']}>
         <SearchField
           callback={(input) => {
@@ -48,7 +48,7 @@ function VideosPage() {
       <InfiniteScroll callback={setIntersecting}>
         <VideosList videos={videos} />
       </InfiniteScroll>
-    </div>
+    </>
   );
 }
 
