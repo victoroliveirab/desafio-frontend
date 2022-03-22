@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
+import buildQuery from 'shared/helpers/api/youtube';
 import type { YoutubeApi } from './types';
 
 const prefix = 'https://youtube.googleapis.com/youtube/v3';
-const googleKey = process.env.REACT_APP_API_KEY;
 
 export interface VideoThumbnail {
   width: number;
@@ -57,30 +57,35 @@ export type GetByPageToken = YoutubeApi<YoutubeVideo>;
 export type GetByKeyword = YoutubeApi<YoutubeVideo>;
 export type GetByChannelId = YoutubeApi<YoutubeVideo>;
 
-const mostPopularQuery =
-  'part=snippet,contentDetails,statistics&chart=mostPopular&regionCode=US&maxResults=12';
-
 export default function videosService(api: AxiosInstance) {
   return {
-    getMostPopular: async () =>
+    getMostPopular: async (pageToken?: string) =>
       api.get<GetMostPopular>(
-        `${prefix}/videos?key=${googleKey}&${mostPopularQuery}`
-      ),
-    getByPageToken: async (pageToken: string) =>
-      api.get<GetByPageToken>(
-        `${prefix}/videos?key=${googleKey}&${mostPopularQuery}&pageToken=${pageToken}`
+        `${prefix}/videos?${buildQuery({
+          chart: 'mostPopular',
+          pageSize: 12,
+          pageToken,
+          part: ['contentDetails', 'snippet', 'statistics'],
+        })}`
       ),
     getByKeyword: async (keyword: string, pageToken?: string) =>
       api.get<GetByKeyword>(
-        `${prefix}/search?&key=${googleKey}&part=snippet&maxResults=12&type=video&q=${keyword}&pageToken=${
-          pageToken || ''
-        }`
+        `${prefix}/search?${buildQuery({
+          keyword,
+          pageSize: 12,
+          pageToken,
+          part: ['snippet'],
+          type: 'video',
+        })}`
       ),
     getByChannelId: async (channelId: string, pageToken?: string) =>
       api.get<GetByChannelId>(
-        `${prefix}/activities?part=snippet,contentDetails&channelId=${channelId}&maxResults=12&key=${googleKey}&pageToken=${
-          pageToken || ''
-        }`
+        `${prefix}/activities?${buildQuery({
+          channelId,
+          pageSize: 12,
+          pageToken,
+          part: ['contentDetails', 'snippet'],
+        })}`
       ),
   };
 }
