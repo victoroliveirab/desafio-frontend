@@ -15,10 +15,10 @@ export interface VideoThumbnails {
 }
 
 export interface VideoSnippet {
-  categoryId: string;
+  categoryId?: string;
   channelId: string;
   channelTitle: string;
-  defaultAudioLanguage: string;
+  defaultAudioLanguage?: string;
   description: string;
   liveBroadcastContent: string;
   publishedAt: string;
