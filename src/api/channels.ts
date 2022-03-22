@@ -16,9 +16,15 @@ export interface ChannelSnippet {
   };
 }
 
+export interface ChannelContentDetails {
+  totalItemCount: string;
+  newItemCount: string;
+}
+
 export interface YoutubeChannel {
   id: string;
   snippet: ChannelSnippet;
+  contentDetails: ChannelContentDetails;
 }
 
 export type GetUserSubscriptions = YoutubeApi<YoutubeChannel>;
@@ -27,7 +33,7 @@ export default function channelsService(api: AxiosInstance) {
   return {
     getUserSubscriptions: async () =>
       api.get<GetUserSubscriptions>(
-        `${prefix}/subscriptions?part=snippet&mine=true&key=${googleKey}`
+        `${prefix}/subscriptions?part=snippet,contentDetails&mine=true&maxResults=12&key=${googleKey}`
       ),
   };
 }
