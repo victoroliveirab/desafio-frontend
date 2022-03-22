@@ -25,6 +25,8 @@
 @media screen and (min-width: 1200px) {
   .videos-list {
     grid-template-columns: repeat(3, 1fr);
+    column-gap: 25px;
+    row-gap: 25px;
   }
 }
 
