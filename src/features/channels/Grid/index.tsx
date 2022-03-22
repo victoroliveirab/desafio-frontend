@@ -9,8 +9,8 @@ interface IChannelsGrid {
 
 function mapper(channel: YoutubeChannel) {
   const {
-    id,
     snippet: {
+      resourceId: { channelId: id },
       thumbnails: {
         high: { url: img },
       },
