@@ -27,7 +27,7 @@ function Card({ data }: ICard) {
           });
         }}
       >
-        <img src={data.img} alt={data.title} />
+        <img src={data.img} alt={data.title} className={styles.thumb} />
       </div>
       <div className={styles.info}>
         <Avatar alt={data.type} src={data.avatar} />
