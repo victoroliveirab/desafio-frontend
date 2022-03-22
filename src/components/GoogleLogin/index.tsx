@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import api, { openIdServices } from 'api';
 import { useAuth, useGoogleAuth } from 'shared/hooks';
 import type { IAuthUser } from 'shared/providers/auth/types';
+import { scopes } from './constants';
 import type { OpenIdResponse } from './types';
 
 const clientId = process.env.REACT_APP_CLIENT_ID as string;
@@ -17,7 +18,7 @@ function GoogleLogin() {
     if (accounts?.oauth2) {
       const client = accounts.oauth2.initTokenClient({
         client_id: clientId,
-        scope: 'https://www.googleapis.com/auth/youtube.readonly',
+        scope: scopes,
         callback: (response: OpenIdResponse) => {
           const { access_token: accessToken } = response;
           api.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
