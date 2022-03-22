@@ -25,7 +25,7 @@ function HomePage() {
     if (!intersecting || !nextPageToken || requestInProgress) return;
     if (videos.length >= MAX_ELEMENTS) return;
     setRequestInProgress(true);
-    videosServices.getByPageToken(nextPageToken).then(({ data }) => {
+    videosServices.getMostPopular(nextPageToken).then(({ data }) => {
       setVideos((currentVideos) => currentVideos.concat(data.items));
       setNextPageToken(data.nextPageToken);
       setTimeout(() => setRequestInProgress(false), 100); // TODO: set proper throttle function
