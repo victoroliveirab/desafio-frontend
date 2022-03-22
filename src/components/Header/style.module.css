@@ -7,6 +7,12 @@
   overflow: visible;
 }
 
+@media screen and (min-width: 576px) {
+  .row {
+    height: 84px;
+  }
+}
+
 .menu {
   width: 100%;
   height: 100%;
@@ -18,6 +24,22 @@
 
 .menu > a + a {
   margin-left: 10px;
+}
+
+@media screen and (min-width: 576px) {
+  .menu {
+    justify-content: center;
+  }
+
+  .menu > a + a {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .menu > a {
+    font-size: 1.25rem;
+  }
 }
 
 .header-logo {
@@ -35,4 +57,16 @@
   margin: 0;
   margin-left: 5px;
   margin-top: 5px;
+}
+
+@media screen and (min-width: 576px) {
+  .header-logo svg {
+    height: 60px;
+    width: 60px;
+  }
+
+  .header-logo h1 {
+    font-size: 2rem;
+    margin-left: 10px;
+  }
 }

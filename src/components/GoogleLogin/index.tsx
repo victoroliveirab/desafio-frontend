@@ -1,3 +1,4 @@
+import Button from '@mui/material/Button';
 import api, { openIdServices } from 'api';
 import { useAuth, useGoogleAuth } from 'shared/hooks';
 import type { IAuthUser } from 'shared/providers/auth/types';
@@ -37,9 +38,9 @@ function GoogleLogin() {
   return user ? (
     <></>
   ) : (
-    <button type="button" onClick={requestAccessToken}>
+    <Button variant="contained" onClick={requestAccessToken}>
       Login
-    </button>
+    </Button>
   );
 }
 
