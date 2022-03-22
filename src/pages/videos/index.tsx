@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { InfiniteScroll, SearchField, VideosList } from 'components';
+import { InfiniteScroll, SearchField } from 'components';
+import { VideosGrid } from 'features/videos';
 import { videosServices } from 'api';
 import type { YoutubeVideo } from 'api/videos';
 import { useThrottle } from 'shared/hooks';
@@ -46,7 +47,7 @@ function VideosPage() {
         />
       </div>
       <InfiniteScroll callback={setIntersecting}>
-        <VideosList videos={videos} />
+        <VideosGrid videos={videos} />
       </InfiniteScroll>
     </>
   );

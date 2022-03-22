@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { videosServices } from 'api';
-import { InfiniteScroll, VideosList } from 'components';
+import { InfiniteScroll } from 'components';
+import { VideosGrid } from 'features/videos';
 import type { YoutubeVideo } from 'api/videos';
 
 const MAX_ELEMENTS = 96;
@@ -34,7 +35,7 @@ function HomePage() {
   return (
     <>
       <InfiniteScroll callback={setIntersecting}>
-        <VideosList videos={videos} />
+        <VideosGrid videos={videos} />
       </InfiniteScroll>
       <p className="text-center">All rights reserved</p>
     </>
