@@ -2,9 +2,9 @@ import { InfiniteScroll } from 'components';
 import { createContext, useEffect, useMemo, useState } from 'react';
 import { useThrottle } from 'shared/hooks';
 import type {
-  IId,
   IInfiniteScrollYoutube,
   IInfiniteScrollYoutubeProvider,
+  IWithId,
 } from './types';
 
 export const InfiniteScrollYoutubeContext =
@@ -17,11 +17,14 @@ export const InfiniteScrollYoutubeContext =
     },
   });
 
-function getId<T extends IId>({ id }: T) {
+function getId<T extends IWithId>({ id }: T) {
   return typeof id === 'string' ? id : id.videoId;
 }
 
-function avoidDuplicateItems<T extends IId>(currentItems: T[], newItems: T[]) {
+function avoidDuplicateItems<T extends IWithId>(
+  currentItems: T[],
+  newItems: T[]
+) {
   const currentItemsIds = currentItems.map(getId);
   const actuallyNewItems = newItems.filter(
     (item) => !currentItemsIds.includes(getId(item))
@@ -29,7 +32,7 @@ function avoidDuplicateItems<T extends IId>(currentItems: T[], newItems: T[]) {
   return currentItems.concat(actuallyNewItems);
 }
 
-function InfiniteScrollYoutubeProvider<T extends IId>({
+function InfiniteScrollYoutubeProvider<T extends IWithId>({
   children,
   service,
 }: IInfiniteScrollYoutubeProvider<T>) {

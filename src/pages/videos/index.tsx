@@ -1,38 +1,32 @@
 import { useEffect, useState } from 'react';
-import { InfiniteScroll, SearchField } from 'components';
+import { SearchField } from 'components';
 import { VideosGrid } from 'features/videos';
 import { videosServices } from 'api';
+import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-youtube';
+import { useInfiniteScrollGrid } from 'shared/hooks';
 import type { YoutubeVideo } from 'api/videos';
-import { useThrottle } from 'shared/hooks';
 
 import styles from './styles.module.css';
 
-function VideosPage() {
-  const [available, trigger] = useThrottle({
-    delay: 500,
-  });
-  const [intersecting, setIntersecting] = useState(false);
+// TODO: define callback type
+function VideosPage({ callback }: any) {
+  const {
+    state: { data },
+    actions: { clearToken },
+  } = useInfiniteScrollGrid();
   const [keyword, setKeyword] = useState('');
-  const [nextPageToken, setNextPageToken] = useState('');
-  const [videos, setVideos] = useState<YoutubeVideo[]>([]);
+  const [refresh, setRefresh] = useState(false);
+  const videos = data as YoutubeVideo[];
 
   useEffect(() => {
-    if (keyword.length < 3 || nextPageToken || !available) return;
-    videosServices.getByKeyword(keyword).then(({ data }) => {
-      trigger();
-      setNextPageToken(data.nextPageToken);
-      setVideos(data.items);
-    });
-  }, [available, keyword, nextPageToken, trigger]);
-
-  useEffect(() => {
-    if (!intersecting || !nextPageToken || !available) return;
-    videosServices.getByKeyword(keyword, nextPageToken).then(({ data }) => {
-      trigger();
-      setNextPageToken(data.nextPageToken);
-      setVideos((currentVideos) => currentVideos.concat(data.items));
-    });
-  }, [available, keyword, intersecting, nextPageToken, trigger]);
+    if (!refresh || keyword.length < 3) return;
+    clearToken();
+    setRefresh(false);
+    callback(
+      () => (pageToken?: string) =>
+        videosServices.getByKeyword(keyword, pageToken)
+    );
+  }, [callback, clearToken, keyword, refresh]);
 
   return (
     <>
@@ -41,16 +35,22 @@ function VideosPage() {
           callback={(input) => {
             if (input !== keyword) {
               setKeyword(input);
-              setNextPageToken('');
+              setRefresh(true);
             }
           }}
         />
       </div>
-      <InfiniteScroll callback={setIntersecting}>
-        <VideosGrid videos={videos} />
-      </InfiniteScroll>
+      <VideosGrid videos={videos} />
     </>
   );
 }
+function VideosPageWrapper() {
+  const [service, setService] = useState();
+  return (
+    <InfiniteScrollYoutubeProvider service={service}>
+      <VideosPage callback={setService} />
+    </InfiniteScrollYoutubeProvider>
+  );
+}
 
-export default VideosPage;
+export default VideosPageWrapper;

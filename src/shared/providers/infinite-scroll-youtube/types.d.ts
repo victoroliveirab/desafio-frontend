@@ -11,12 +11,7 @@ export interface IInfiniteScrollYoutube {
   };
 }
 
-export interface IInfiniteScrollYoutubeProvider<T> {
-  children: ReactNode;
-  service?: (pageToken?: string) => Promise<AxiosResponse<YoutubeApi<T>>>;
-}
-
-export type IId =
+export type IWithId =
   | {
       id: string;
     }
@@ -25,3 +20,12 @@ export type IId =
         videoId: string;
       };
     };
+
+export type InfiniteScrollYoutubeProviderService<T extends IWithId> = (
+  pageToken?: string
+) => Promise<AxiosResponse<YoutubeApi<T>>>;
+
+export interface IInfiniteScrollYoutubeProvider<T> {
+  children: ReactNode;
+  service?: InfiniteScrollYoutubeProviderService<T>;
+}
