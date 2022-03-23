@@ -56,6 +56,7 @@ export type GetMostPopular = YoutubeApi<YoutubeVideo>;
 export type GetByPageToken = YoutubeApi<YoutubeVideo>;
 export type GetByKeyword = YoutubeApi<YoutubeVideo>;
 export type GetByChannelId = YoutubeApi<YoutubeVideo>;
+export type GetById = YoutubeApi<YoutubeVideo>;
 
 export default function videosService(api: AxiosInstance) {
   return {
@@ -85,6 +86,13 @@ export default function videosService(api: AxiosInstance) {
           pageSize: 12,
           pageToken,
           part: ['contentDetails', 'snippet'],
+        })}`
+      ),
+    getById: async (id: string) =>
+      api.get<GetById>(
+        `${prefix}/videos?${buildQuery({
+          id: [id],
+          part: ['contentDetails', 'snippet', 'statistics'],
         })}`
       ),
   };

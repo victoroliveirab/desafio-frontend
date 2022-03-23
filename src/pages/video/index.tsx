@@ -1,25 +1,20 @@
 import { useEffect } from 'react';
-import { useParams, useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { videosServices } from 'api';
 import { useViewport } from 'shared/hooks';
-import { YoutubeVideo } from 'api/videos';
 import videosStorage from 'lib/history-storage/videos';
-
-type LocationState = {
-  videoInfo: YoutubeVideo;
-};
 
 export default function VideoPage() {
   const { videoId } = useParams();
-  const location = useLocation();
   const { width } = useViewport();
 
-  const { videoInfo } = location.state as LocationState;
-
   useEffect(() => {
-    if (videoInfo) {
-      videosStorage.putNewEntry(videoInfo);
-    }
-  }, [videoId, videoInfo]);
+    if (!videoId) return;
+    videosServices.getById(videoId).then(({ data }) => {
+      const [item] = data.items;
+      videosStorage.putNewEntry(item);
+    });
+  }, [videoId]);
 
   return (
     <iframe

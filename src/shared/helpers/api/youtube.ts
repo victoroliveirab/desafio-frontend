@@ -3,6 +3,7 @@ import type { YoutubeQuery } from 'api/types';
 export default function buildQuery({
   chart,
   channelId,
+  id,
   keyword,
   mine,
   pageSize,
@@ -14,6 +15,7 @@ export default function buildQuery({
   const query: string[] = [];
   if (chart) query.push(`chart=${chart}`);
   if (channelId) query.push(`channelId=${channelId}`);
+  if (id) query.push(`id=${id.join(',')}`);
   if (keyword) query.push(`q=${keyword}`);
   if (mine) query.push(`mine=${mine}`);
   if (pageSize) query.push(`maxResults=${pageSize}`);

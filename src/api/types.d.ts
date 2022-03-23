@@ -12,6 +12,7 @@ export type YoutubeApi<T> = {
 export interface YoutubeQuery {
   chart?: string;
   channelId?: string;
+  id?: string[];
   keyword?: string;
   mine?: boolean;
   pageSize?: number;
