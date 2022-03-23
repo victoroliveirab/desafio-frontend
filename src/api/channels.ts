@@ -1,8 +1,8 @@
 import { AxiosInstance } from 'axios';
+import buildQuery from 'shared/helpers/api/youtube';
 import type { YoutubeApi } from './types';
 
 const prefix = 'https://youtube.googleapis.com/youtube/v3';
-const googleKey = process.env.REACT_APP_API_KEY;
 
 export interface ChannelSnippet {
   publishedAt: string;
@@ -33,9 +33,14 @@ export type GetUserSubscriptions = YoutubeApi<YoutubeChannel>;
 
 export default function channelsService(api: AxiosInstance) {
   return {
-    getUserSubscriptions: async () =>
+    getUserSubscriptions: async (pageToken?: string) =>
       api.get<GetUserSubscriptions>(
-        `${prefix}/subscriptions?part=snippet,contentDetails&mine=true&maxResults=12&key=${googleKey}`
+        `${prefix}/subscriptions?${buildQuery({
+          mine: true,
+          pageSize: 12,
+          pageToken,
+          part: ['contentDetails', 'snippet'],
+        })}`
       ),
   };
 }
