@@ -9,6 +9,7 @@ Object {
         class="video-container"
       >
         <div
+          class="video-thumb-wrapper"
           data-testid="thumbnail-wrapper"
         >
           <img
@@ -48,6 +49,7 @@ Object {
       class="video-container"
     >
       <div
+        class="video-thumb-wrapper"
         data-testid="thumbnail-wrapper"
       >
         <img
