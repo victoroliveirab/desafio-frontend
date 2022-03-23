@@ -5,4 +5,6 @@ export { default as useInfiniteScrollGrid } from './useInfiniteScrollGrid';
 export { default as useIntersectionDom } from './useIntersectionDom';
 export { default as useLocalStorage } from './useLocalStorage';
 export { default as useThrottle } from './useThrottle';
+export { default as useTimeout } from './useTimeout';
+export { default as useUx, useUxState } from './useUx';
 export { default as useViewport } from './useViewport';

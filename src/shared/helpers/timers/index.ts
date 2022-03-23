@@ -8,3 +8,7 @@ export function throttle<T>(callback: (param: T) => void, delay = 0) {
     }, delay);
   };
 }
+
+export function immediate(fn: (...args: unknown[]) => void) {
+  setTimeout(fn, 0);
+}
