@@ -4,6 +4,7 @@ import { VideosGrid } from 'features/videos';
 import { videosServices } from 'api';
 import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-youtube';
 import { useInfiniteScrollGrid } from 'shared/hooks';
+import searchHistory from 'lib/history-storage/search';
 import type { YoutubeVideo } from 'api/videos';
 
 import styles from './styles.module.css';
@@ -22,6 +23,12 @@ function VideosPage({ callback }: any) {
     if (!refresh || keyword.length < 3) return;
     clearToken();
     setRefresh(false);
+    const now = new Date().toISOString();
+    searchHistory.putNewEntry({
+      id: keyword,
+      date: now,
+      term: keyword,
+    });
     callback(
       () => (pageToken?: string) =>
         videosServices.getByKeyword(keyword, pageToken)
@@ -32,6 +39,11 @@ function VideosPage({ callback }: any) {
     <>
       <div className={styles['videos-searchfield']}>
         <SearchField
+          autocomplete
+          options={searchHistory.entries.map((entry) => ({
+            ...entry,
+            label: entry.term,
+          }))}
           callback={(input) => {
             if (input !== keyword) {
               setKeyword(input);
