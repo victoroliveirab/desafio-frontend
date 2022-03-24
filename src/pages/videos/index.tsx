@@ -3,14 +3,19 @@ import { SearchField } from 'components';
 import { VideosGrid } from 'features/videos';
 import { videosServices } from 'api';
 import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-youtube';
-import { useInfiniteScrollGrid } from 'shared/hooks';
+import { useInfiniteScrollGrid, useServiceState } from 'shared/hooks';
 import searchHistory from 'lib/history-storage/search';
-import type { YoutubeVideo } from 'api/videos';
+import type { ApiServiceState } from 'api/types';
+import type { GetByKeyword, YoutubeVideo } from 'api/videos';
 
 import styles from './styles.module.css';
 
+interface IVideosPage {
+  callback: (param: ApiServiceState<GetByKeyword>) => void;
+}
+
 // TODO: define callback type
-function VideosPage({ callback }: any) {
+function VideosPage({ callback }: IVideosPage) {
   const {
     state: { data },
     actions: { clearToken },
@@ -29,9 +34,8 @@ function VideosPage({ callback }: any) {
       date: now,
       term: keyword,
     });
-    callback(
-      () => (pageToken?: string) =>
-        videosServices.getByKeyword(keyword, pageToken)
+    callback((pageToken?: string) =>
+      videosServices.getByKeyword(keyword, pageToken)
     );
   }, [callback, clearToken, keyword, refresh]);
 
@@ -57,7 +61,7 @@ function VideosPage({ callback }: any) {
   );
 }
 function VideosPageWrapper() {
-  const [service, setService] = useState();
+  const [service, setService] = useServiceState<GetByKeyword>();
   return (
     <InfiniteScrollYoutubeProvider service={service}>
       <VideosPage callback={setService} />

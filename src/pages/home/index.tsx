@@ -1,45 +1,46 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { videosServices } from 'api';
-import { InfiniteScroll } from 'components';
 import { VideosGrid } from 'features/videos';
-import type { YoutubeVideo } from 'api/videos';
+import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-youtube';
+import { useInfiniteScrollGrid, useServiceState } from 'shared/hooks';
+import type { GetMostPopular, YoutubeVideo } from 'api/videos';
+import type { ApiServiceState } from 'api/types';
 
 const MAX_ELEMENTS = 96;
 
-function HomePage() {
-  const [intersecting, setIntersecting] = useState(false);
-  const [videos, setVideos] = useState<YoutubeVideo[]>([]);
-  const [nextPageToken, setNextPageToken] = useState('');
-  const [requestInProgress, setRequestInProgress] = useState(false);
+interface IHomePage {
+  callback: (param?: ApiServiceState<GetMostPopular>) => void;
+}
+
+const getMostPopular =
+  videosServices.getMostPopular as ApiServiceState<GetMostPopular>;
+
+function HomePage({ callback }: IHomePage) {
+  const {
+    state: { data },
+  } = useInfiniteScrollGrid();
+  const videos = data as YoutubeVideo[];
 
   useEffect(() => {
-    setRequestInProgress(true);
-    videosServices.getMostPopular().then(({ data }) => {
-      setVideos(data.items);
-      setNextPageToken(data.nextPageToken);
-      setTimeout(() => setRequestInProgress(false), 100); // TODO: set proper throttle function
-    });
-  }, []);
-
-  useEffect(() => {
-    if (!intersecting || !nextPageToken || requestInProgress) return;
-    if (videos.length >= MAX_ELEMENTS) return;
-    setRequestInProgress(true);
-    videosServices.getMostPopular(nextPageToken).then(({ data }) => {
-      setVideos((currentVideos) => currentVideos.concat(data.items));
-      setNextPageToken(data.nextPageToken);
-      setTimeout(() => setRequestInProgress(false), 100); // TODO: set proper throttle function
-    });
-  }, [intersecting, nextPageToken, requestInProgress, videos]);
+    if (data.length >= MAX_ELEMENTS) callback();
+    else callback(getMostPopular);
+  }, [callback, data]);
 
   return (
     <>
-      <InfiniteScroll callback={setIntersecting}>
-        <VideosGrid videos={videos} />
-      </InfiniteScroll>
+      <VideosGrid videos={videos} />
       <p className="text-center">All rights reserved</p>
     </>
   );
 }
 
-export default HomePage;
+function HomePageWrapper() {
+  const [service, setService] = useServiceState<GetMostPopular>();
+  return (
+    <InfiniteScrollYoutubeProvider service={service}>
+      <HomePage callback={setService} />
+    </InfiniteScrollYoutubeProvider>
+  );
+}
+
+export default HomePageWrapper;
