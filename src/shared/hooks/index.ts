@@ -4,6 +4,7 @@ export { default as useGoogleAuth } from './useGoogleAuth';
 export { default as useInfiniteScrollGrid } from './useInfiniteScrollGrid';
 export { default as useIntersectionDom } from './useIntersectionDom';
 export { default as useLocalStorage } from './useLocalStorage';
+export { default as useServiceState } from './useServiceState';
 export { default as useThrottle } from './useThrottle';
 export { default as useTimeout } from './useTimeout';
 export { default as useUx, useUxState } from './useUx';

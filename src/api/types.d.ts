@@ -1,3 +1,5 @@
+import { AxiosResponse } from 'axios';
+
 export type YoutubeApi<T> = {
   kind: string;
   etag: string;
@@ -21,3 +23,7 @@ export interface YoutubeQuery {
   regionCode?: string;
   type?: 'channel' | 'playlist' | 'video';
 }
+
+export type ApiServiceState<T> =
+  | ((pageToken?: string) => Promise<AxiosResponse<T>>)
+  | undefined;
