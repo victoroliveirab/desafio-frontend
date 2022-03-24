@@ -14,7 +14,6 @@ interface IVideosPage {
   callback: (param: ApiServiceState<GetByKeyword>) => void;
 }
 
-// TODO: define callback type
 function VideosPage({ callback }: IVideosPage) {
   const {
     state: { data },
