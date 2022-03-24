@@ -1,0 +1,17 @@
+%absolute-horizontal-center {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+%fit-parent {
+  height: 100%;
+  width: 100%;
+}
+
+%fit-parent-height {
+  height: 100%;
+}
+
+%fit-parent-width {
+  width: 100%;
+}

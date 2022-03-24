@@ -1,0 +1,31 @@
+@import 'variables';
+
+@mixin small-screen {
+  @media (min-width: $screen-xs) {
+    @content;
+  }
+}
+
+@mixin medium-screen {
+  @media (min-width: $screen-sm) {
+    @content;
+  }
+}
+
+@mixin large-screen {
+  @media (min-width: $screen-md) {
+    @content;
+  }
+}
+
+@mixin wide-screen {
+  @media (min-width: $screen-lg) {
+    @content;
+  }
+}
+
+@mixin jumbo-screen {
+  @media (min-width: $screen-xl) {
+    @content;
+  }
+}
