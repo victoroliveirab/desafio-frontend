@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import type { AxiosResponse } from 'axios';
 import type { YoutubeApi } from 'api/types';
+import { YoutubeVideoId } from 'api/videos';
 
 export interface IInfiniteScrollYoutube {
   state: {
@@ -11,15 +12,9 @@ export interface IInfiniteScrollYoutube {
   };
 }
 
-export type IWithId =
-  | {
-      id: string;
-    }
-  | {
-      id: {
-        videoId: string;
-      };
-    };
+export type IWithId = {
+  id: YoutubeVideoId;
+};
 
 export type InfiniteScrollYoutubeProviderService<T extends IWithId> = (
   pageToken?: string
