@@ -21,3 +21,9 @@ export type OpenIdResponse = {
   scope: string;
   token_type: string;
 };
+
+export type InitTokenClientParams = {
+  client_id: string;
+  scope: string;
+  callback: (response: OpenIdResponse) => void;
+};

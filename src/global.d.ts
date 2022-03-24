@@ -1,6 +1,7 @@
 import type {
   GoogleLoginResponse,
   GoogleNotification,
+  InitTokenClientParams,
 } from 'components/GoogleLogin/types';
 
 export interface IGoogle {
@@ -19,7 +20,11 @@ export interface IGoogle {
         }
       );
     };
-    oauth2: any; // TODO: type me
+    oauth2: {
+      initTokenClient(params: InitTokenClientParams): {
+        requestAccessToken: () => void;
+      };
+    };
   };
 }
 declare global {
