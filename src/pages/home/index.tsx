@@ -5,6 +5,7 @@ import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-yout
 import { useInfiniteScrollGrid, useServiceState } from 'shared/hooks';
 import type { GetMostPopular, YoutubeVideo } from 'api/videos';
 import type { ApiServiceState } from 'api/types';
+import CardGridSkeleton from 'components/CardGridSkeleton';
 
 const MAX_ELEMENTS = 96;
 
@@ -20,6 +21,7 @@ function HomePage({ callback }: IHomePage) {
     state: { data },
   } = useInfiniteScrollGrid();
   const videos = data as YoutubeVideo[];
+  // const videos: YoutubeVideo[] = [];
 
   useEffect(() => {
     if (data.length >= MAX_ELEMENTS) callback();
@@ -28,7 +30,11 @@ function HomePage({ callback }: IHomePage) {
 
   return (
     <>
-      <VideosGrid videos={videos} />
+      {videos.length > 0 ? (
+        <VideosGrid videos={videos} />
+      ) : (
+        <CardGridSkeleton cards={12} />
+      )}
       <p className="text-center">All rights reserved</p>
     </>
   );

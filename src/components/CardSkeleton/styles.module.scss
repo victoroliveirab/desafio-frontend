@@ -1,0 +1,44 @@
+@import 'assets/sass/resources';
+
+.container {
+  @extend %fit-parent-width;
+  height: calc(0.5625 * (100vw - 2 * 20px));
+  max-height: 250px;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  @include medium-screen {
+    align-self: self-start;
+  }
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton {
+  &__image {
+    flex-grow: 1;
+  }
+
+  &__info {
+    @extend %fit-parent-width;
+    margin-top: 10px;
+    display: flex;
+
+    & > * + * {
+      margin-left: 8px;
+    }
+  }
+
+  &__text {
+    @extend %fit-parent-width;
+  }
+
+  &__title {
+    margin-bottom: 10px;
+  }
+
+  &__subtitle {
+    height: 0.175rem;
+    margin: 0;
+  }
+}
