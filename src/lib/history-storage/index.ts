@@ -28,12 +28,16 @@ export default class HistoryStorage<T> {
 
   putNewEntry(entry: T) {
     const entryIndex = this.findIndexById(this.idGetter(entry));
+    const entryWithDate = {
+      ...entry,
+      recordDate: new Date(),
+    };
     if (entryIndex === -1) {
-      this.setHistory([entry, ...this.store]);
+      this.setHistory([entryWithDate, ...this.store]);
       return;
     }
     this.setHistory([
-      entry,
+      entryWithDate,
       ...this.store.slice(0, entryIndex),
       ...this.store.slice(entryIndex + 1),
     ]);
