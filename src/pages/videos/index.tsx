@@ -8,7 +8,7 @@ import searchHistory from 'lib/history-storage/search';
 import type { ApiServiceState } from 'api/types';
 import type { GetByKeyword, YoutubeVideo } from 'api/videos';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 interface IVideosPage {
   callback: (param: ApiServiceState<GetByKeyword>) => void;
@@ -41,7 +41,7 @@ function VideosPage({ callback }: IVideosPage) {
 
   return (
     <>
-      <div className={styles['videos-searchfield']}>
+      <div className={styles.searchfield}>
         <SearchField
           autocomplete
           options={searchHistory.entries.map((entry) => ({
