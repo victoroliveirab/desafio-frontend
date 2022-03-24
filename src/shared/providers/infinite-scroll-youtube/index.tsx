@@ -42,15 +42,18 @@ function InfiniteScrollYoutubeProvider<T extends IWithId>({
   const [intersecting, setIntersecting] = useState(false);
   const [nextPageToken, setNextPageToken] = useState('');
   const [data, setData] = useState<T[]>([]);
+  const [ongoingRequest, setOngoingRequest] = useState(false);
 
   useEffect(() => {
-    if (!available || nextPageToken || !service) return;
+    if (!available || nextPageToken || !service || ongoingRequest) return;
+    setOngoingRequest(true);
     service().then(({ data: responseData }) => {
       trigger();
       setData(responseData.items);
       setNextPageToken(responseData.nextPageToken);
+      setOngoingRequest(false);
     });
-  }, [available, nextPageToken, service, trigger]);
+  }, [available, nextPageToken, ongoingRequest, service, trigger]);
 
   useEffect(() => {
     if (!available || !intersecting || !nextPageToken || !service) return;
