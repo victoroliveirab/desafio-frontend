@@ -1,0 +1,62 @@
+@import 'assets/sass/resources';
+
+.container {
+  width: 100%;
+  height: auto;
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
+  @include medium-screen {
+    align-self: self-start;
+  }
+}
+
+.thumb {
+  @extend %fit-parent;
+  object-fit: cover;
+
+  &-wrapper {
+    @extend %fit-parent-width;
+    height: auto;
+    margin-bottom: 10px;
+
+    @include small-screen {
+      height: 250px;
+      object-fit: cover;
+    }
+  }
+}
+
+.info {
+  @extend %fit-parent-width;
+  display: flex;
+  line-height: 2;
+
+  &__text {
+    @extend %fit-parent-height;
+    min-height: 40px;
+  }
+
+  & h2 {
+    font-size: 1rem;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin: 0;
+    max-height: 40px;
+    line-height: 1.2;
+    font-weight: normal;
+  }
+
+  & h4 {
+    font-size: 0.875rem;
+    margin: 0;
+    font-weight: normal;
+  }
+
+  & > * + * {
+    margin-left: 8px;
+  }
+}

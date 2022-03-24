@@ -1,8 +1,9 @@
+@import 'assets/sass/resources';
+
 .alert {
+  @extend %absolute-horizontal-center;
   position: fixed;
   top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
   max-width: 500px;
   z-index: 1000;
   word-break: break-word;

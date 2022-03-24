@@ -3,7 +3,7 @@ import Fade from '@mui/material/Fade';
 import { useEffect } from 'react';
 import { useTimeout, useUx } from 'shared/hooks';
 
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 function Alert() {
   const {
