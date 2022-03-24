@@ -1,0 +1,67 @@
+@import 'assets/sass/resources';
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  width: calc(100vw - 2 * 10px);
+  overflow: visible;
+
+  @include small-screen {
+    height: 84px;
+  }
+}
+
+.menu {
+  @extend %fit-parent;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include small-screen {
+    justify-content: center;
+  }
+
+  @include large-screen {
+    & > a {
+      font-size: 1.25rem;
+    }
+  }
+
+  & > a + a {
+    margin-left: 10px;
+
+    @include small-screen {
+      margin-left: 20px;
+    }
+  }
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+
+  & svg {
+    height: 40px;
+    width: 40px;
+
+    @include small-screen {
+      height: 60px;
+      width: 60px;
+    }
+  }
+
+  & h1 {
+    font-size: 1rem;
+    margin: 0;
+    margin-left: 5px;
+    margin-top: 5px;
+
+    @include small-screen {
+      font-size: 2rem;
+      margin-left: 10px;
+    }
+  }
+}

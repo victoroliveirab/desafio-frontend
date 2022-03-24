@@ -1,6 +1,6 @@
 import type { ICard } from 'components/Card';
 import Card from 'components/Card';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 export interface ICardGrid {
   data: ICard[];

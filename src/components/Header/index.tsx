@@ -5,7 +5,7 @@ import Avatar from '@mui/material/Avatar';
 import GoogleLogin from 'components/GoogleLogin';
 import { useAuthState } from 'shared/hooks';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
-import styles from './style.module.css';
+import styles from './style.module.scss';
 
 function Header() {
   const { user } = useAuthState();
