@@ -1,32 +1,33 @@
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { videosServices } from 'api';
-import { InfiniteScroll } from 'components';
 import { VideosGrid } from 'features/videos';
+import InfiniteScrollYoutubeProvider from 'shared/providers/infinite-scroll-youtube';
 import type { YoutubeVideo } from 'api/videos';
+import { useInfiniteScrollGrid } from 'shared/hooks';
 
 function ChannelPage() {
-  const [intersecting, setIntersecting] = useState(false);
-  const [nextPageToken, setNextPageToken] = useState('');
-  const [videos, setVideos] = useState<YoutubeVideo[]>([]);
-  const { channelId } = useParams();
-
-  useEffect(() => {
-    if (!channelId) return;
-    videosServices.getByChannelId(channelId).then(({ data }) => {
-      setVideos(data.items);
-      setNextPageToken(data.nextPageToken);
-    });
-  }, [channelId]);
+  const {
+    state: { data },
+  } = useInfiniteScrollGrid();
+  const videos = data as YoutubeVideo[];
 
   return (
-    <>
-      Channel
-      <InfiniteScroll callback={setIntersecting}>
-        <VideosGrid videos={videos} />
-      </InfiniteScroll>
-    </>
+    <InfiniteScrollYoutubeProvider>
+      <VideosGrid videos={videos} />
+    </InfiniteScrollYoutubeProvider>
   );
 }
 
-export default ChannelPage;
+function ChannelPageWrapper() {
+  const { channelId } = useParams();
+  if (!channelId) return <></>;
+  return (
+    <InfiniteScrollYoutubeProvider
+      service={() => videosServices.getByChannelId(channelId)}
+    >
+      <ChannelPage />
+    </InfiniteScrollYoutubeProvider>
+  );
+}
+
+export default ChannelPageWrapper;
