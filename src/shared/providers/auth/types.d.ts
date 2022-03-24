@@ -14,3 +14,7 @@ export interface IAuthState {
 export interface IAuthProvider {
   children: ReactNode;
 }
+
+export interface IAuthPersisted extends IAuthState {
+  expiration: string;
+}
