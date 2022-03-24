@@ -1,9 +1,8 @@
-import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 import api, { openIdServices } from 'api';
-import { persistItem, retrieveItem } from 'shared/helpers/local-storage';
+import { persistItem } from 'shared/helpers/local-storage';
 import { useAuth, useGoogleAuth } from 'shared/hooks';
-import type { IAuthPersisted, IAuthUser } from 'shared/providers/auth/types';
+import type { IAuthUser } from 'shared/providers/auth/types';
 import { getOneHourLaterDate } from 'shared/helpers/datetime';
 import { scopes } from './constants';
 import type { OpenIdResponse } from './types';
@@ -16,25 +15,6 @@ function GoogleLogin() {
     actions: { setUser },
   } = useAuth();
   const { accounts } = useGoogleAuth();
-
-  useEffect(() => {
-    const alreadyLoggedUser: IAuthPersisted | undefined = retrieveItem(
-      'google-user',
-      undefined
-    );
-    console.log(alreadyLoggedUser);
-    if (!alreadyLoggedUser) return;
-    const {
-      expiration,
-      token,
-      user: userDetails,
-    } = alreadyLoggedUser as IAuthPersisted;
-    console.log(new Date(expiration) <= new Date());
-    console.log(userDetails);
-    if (new Date(expiration) <= new Date() || !userDetails || !token) return;
-    setUser(userDetails);
-    api.defaults.headers.common.Authorization = `Bearer ${token}`;
-  }, [setUser]);
 
   const requestAccessToken = () => {
     if (accounts?.oauth2) {
