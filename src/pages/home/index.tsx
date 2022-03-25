@@ -21,7 +21,6 @@ function HomePage({ callback }: IHomePage) {
     state: { data },
   } = useInfiniteScrollGrid();
   const videos = data as YoutubeVideo[];
-  // const videos: YoutubeVideo[] = [];
 
   useEffect(() => {
     if (data.length >= MAX_ELEMENTS) callback();

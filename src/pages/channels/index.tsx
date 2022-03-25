@@ -11,7 +11,7 @@ function ChannelsPage() {
   const channels = data as YoutubeChannel[];
   return (
     <div>
-      Channels
+      <h2 className="text-center">Your channels</h2>
       <ChannelsGrid channels={channels} />
     </div>
   );
