@@ -6,23 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="grid"
-      />
-      <div
-        style="height: 0px; width: 100%;"
-      />
-      <div
         style="height: 0px; width: 100%;"
       />
     </div>
   </body>,
   "container": <div>
-    <div
-      class="grid"
-    />
-    <div
-      style="height: 0px; width: 100%;"
-    />
     <div
       style="height: 0px; width: 100%;"
     />

@@ -6,7 +6,11 @@ Object {
   "baseElement": <body>
     <div>
       <div>
-        Channels
+        <h2
+          class="text-center"
+        >
+          Your channels
+        </h2>
         <div
           class="grid"
         />
@@ -18,7 +22,11 @@ Object {
   </body>,
   "container": <div>
     <div>
-      Channels
+      <h2
+        class="text-center"
+      >
+        Your channels
+      </h2>
       <div
         class="grid"
       />
