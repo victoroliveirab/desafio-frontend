@@ -15,5 +15,6 @@ export function formatViewCount(viewCount: string) {
   const magnitude = viewCount.length;
   if (magnitude < 4) return viewCount;
   if (magnitude < 7) return `${Math.floor(+viewCount / 1000)}K`;
-  return `${Math.floor(+viewCount / 100_000) / 10}M`;
+  if (magnitude < 10) return `${Math.floor(+viewCount / 100_000) / 10}M`;
+  return `${Math.floor(+viewCount / 100_000_000) / 10}B`;
 }
