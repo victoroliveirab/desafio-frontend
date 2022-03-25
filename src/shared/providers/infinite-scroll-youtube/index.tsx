@@ -42,21 +42,23 @@ function InfiniteScrollYoutubeProvider<T extends IWithId>({
   const [intersecting, setIntersecting] = useState(false);
   const [nextPageToken, setNextPageToken] = useState('');
   const [data, setData] = useState<T[]>([]);
-  const [ongoingRequest, setOngoingRequest] = useState(false);
+  const [firstRequest, setFirstRequest] = useState(true);
+  const [pageable, setPageable] = useState(false);
 
   useEffect(() => {
-    if (!available || nextPageToken || !service || ongoingRequest) return;
-    setOngoingRequest(true);
+    if (!available || nextPageToken || !service || !firstRequest) return;
+    setFirstRequest(false);
     service().then(({ data: responseData }) => {
       trigger();
       setData(responseData.items);
       setNextPageToken(responseData.nextPageToken);
-      setOngoingRequest(false);
+      setPageable(!!responseData.nextPageToken);
     });
-  }, [available, nextPageToken, ongoingRequest, service, trigger]);
+  }, [available, firstRequest, nextPageToken, service, trigger]);
 
   useEffect(() => {
-    if (!available || !intersecting || !nextPageToken || !service) return;
+    if (!available || !intersecting || !nextPageToken || !service || !pageable)
+      return;
     service(nextPageToken).then(({ data: responseData }) => {
       trigger();
       setData((currentData) =>
@@ -64,7 +66,7 @@ function InfiniteScrollYoutubeProvider<T extends IWithId>({
       );
       setNextPageToken(responseData.nextPageToken);
     });
-  }, [available, nextPageToken, intersecting, service, trigger]);
+  }, [available, nextPageToken, intersecting, service, trigger, pageable]);
 
   const value = useMemo(
     () => ({
@@ -72,7 +74,10 @@ function InfiniteScrollYoutubeProvider<T extends IWithId>({
         data,
       },
       actions: {
-        clearToken: () => setNextPageToken(''),
+        clearToken: () => {
+          setNextPageToken('');
+          setFirstRequest(true);
+        },
       },
     }),
     [data]
