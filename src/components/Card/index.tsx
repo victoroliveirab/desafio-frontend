@@ -20,6 +20,7 @@ function Card({ data }: ICard) {
   return (
     <div className={styles.container}>
       <div
+        data-testid="thumb-wrapper"
         className={styles['thumb-wrapper']}
         onClick={() => {
           navigate(data.url, {

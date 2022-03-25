@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Card /> Should match snapshot 1`] = `
+exports[`<Card /> should match snapshot 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -10,6 +10,7 @@ Object {
       >
         <div
           class="thumb-wrapper"
+          data-testid="thumb-wrapper"
         >
           <img
             alt="$1 VS $29,000 House!"
@@ -49,6 +50,7 @@ Object {
     >
       <div
         class="thumb-wrapper"
+        data-testid="thumb-wrapper"
       >
         <img
           alt="$1 VS $29,000 House!"
