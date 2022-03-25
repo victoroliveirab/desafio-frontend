@@ -2,7 +2,7 @@
 
 ## Folder structure
 
-📂**mocks** &rarr; contains JavaScript objects and JSON samples to aid tests
+📂\_\_mocks\_\_ &rarr; contains JavaScript objects and JSON samples to aid tests
 
 📂api &rarr; contains the main instance of axios and available services
 
