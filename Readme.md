@@ -1,60 +1,44 @@
-# 🏁 Desafio de programação - Vaga Front-End 🏁
+# React App with Youtube Data API v3
 
-**Este teste tem por objetivos principais avaliar:**
+## Folder structure
 
-- Habilidades no desenvolvimento frontend
-- Conceitos de UI e UX aplicados
+📂**mocks** &rarr; contains JavaScript objects and JSON samples to aid tests
+📂api &rarr; contains the main instance of axios and available services
+📂assets &rarr; contains images and stylesheets available globally
+📂components &rarr; contains the generic JSX components available to other components and pages;
+📂features &rarr; contains components which implement specific versions of one or more components;
+📂lib &rarr; contains groups of logic which could be by themselves a vendor library;
+📂pages &rarr; contains the pages to be rendered by the routing mechanism;
+📂shared &rarr; contains shared logic
 
-****
+> 📂helpers &rarr; utility functions to avoid bloating main files and generally used by multiple elements;
+> 📂hooks &rarr; collection of hooks to be used throughout the app
+> 📂providers &rarr; React Context API providers
 
-## Instruções
+## Libraries and Packages
 
-- Primeiro, faça um fork deste projeto para sua conta no Github (crie uma se você não possuir).
-- Em seguida, implemente o projeto tal qual descrito abaixo, em seu clone local.
-- Por fim, envie via email um arquivo patch para seu contato na Bycoders_.
+⚛️React 17
+🗺️React Router
+🌐Axios
+🎇node-sass
+📚Material-UI
 
-****
+## Design Choices
 
-## Desafio 🚀 🚀 🚀
+- Every component must be designed to allow testing in an isolated environment;
+- Every component must be written in Typescript;
+- A library must be installed if and only if its logic cannot be written easily;
+- Logic that can become a hook must become a hook;
+- ESLint and Prettier rules must be respected unless there's a pretty good reason to do otherwise;
 
-![screen](/image.png)
+## Known Flaws
 
-O desafio consiste em criar um projeto com o design da imagem **acima**, utilizando a [API do YouTube](https://developers.google.com/youtube/v3)
+- Because this is a SPA with no backend, the OAuth2 access token is being stored on local storage to persist user's session after a page refresh. This is a security vulnerability and with a backend a HttpOnly cookie should be the strategy to use;
+- The initial idea was to develop an application which could fetch from multiple sources and provide a common user interface. This concept got lost in the middle of the way, so some interfaces which rely on `YoutubeVideo`, such as `IVideosGrid` should instead rely on a interface which for every source we could implement a DTO;
+- The loading state only awaits for the JSON data fetching to complete. It should, however, await until the thumbnail is also loaded;
+- The channels' avatars are not loaded, even though the `Card` component has a place to render it. This is because Google doesn't send the channel's avatar URL when a video resource is fetched. I would have to manually make 12 (the page size I chose throughout the app) requests just to render the avatars, which would eventually extinguish my API daily quota.
+- Material-UI, which was the chosen components library, has a CSS-in-JS philosophy via methods such as `styled` and `makeStyles`. I chose however to use Sass module files to customize components;
 
-Utilize a [documentação](https://developers.google.com/youtube/v3/docs) para se orientar em como criar uma conta, logar no app, listar os vídeos do usuário, se inscrever em canais, enviar vídeos, ou o que mais você precisar.
+## Screenshots
 
-O layout da **home** não precisa ser exatamente como o do wireframe. Você pode ficar a vontade para exibir os conteúdos/vídeos que achar melhor, desde que qualquer informação (vídeo, texto, cores, imagens) sejam exibidos de maneira organizada e bem distribuida entre a tela, fornecendo uma boa experiência para o usuário.
-
-**Antes de iniciar o teste**
-1. Crie um projeto no [console de desenvolvedor](https://console.developers.google.com/projectcreate) da **Google**
-2. Ative a [YouTube Data API v3](https://console.developers.google.com/apis/api/youtube.googleapis.com/overview) nele
-3. Crie uma credencial de acesso para que seu app possa se comunicar com a API
-
-**Requisitos esperados na entrega do teste**
-
-- [ ] Fornecer um mecanismo para o usuário poder pesquisar vídeos
-- [ ] Possuir home page que exiba algum conteúdo interessante para uma plataforma de vídeos
-- [ ] Fornecer uma estrutura de gerência do estado da aplicação
-- [ ] Possuir histórico das buscas realizadas (persistir localmente)
-
-**Requisitos extras** 
-
-- [ ] Permitir cadastro de usuário / login através da API do YouTube + OAuth2
-- [ ] Permitir upload de vídeo para a API do YouTube
-
-****
-
-## Pontos principais
-
-- Clean code
-- Conhecimento de boas práticas / design patterns
-- Demonstração de boa gestão do estado do app
-
-****
-
-## Pontos extras
-- Uso de frameworks / libs
-- Testes
-- Componetização do app
-- Uso de linters
-****
+See [Pages](./docs/pages.md) docs
