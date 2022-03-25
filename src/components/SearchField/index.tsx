@@ -85,11 +85,8 @@ function SearchField({
         value={value}
         onClick={() => setOpenMenu(true)}
         onChange={(e) => setValue(e.target.value)}
-        onFocus={() => {
-          if (value.length > 0) {
-            setOpenMenu(true);
-          }
-        }}
+        onFocus={() => setOpenMenu(true)}
+        data-testid="search-field"
       />
       {autocomplete && ref.current && filteredOptions.length > 0 && (
         <ClickAwayListener onClickAway={onClickAway}>
@@ -98,8 +95,8 @@ function SearchField({
             anchorEl={ref.current}
             style={{ width: ref.current?.offsetWidth || '100%' }}
           >
-            <Paper>
-              <MenuList>
+            <Paper data-testid="search-suggestions">
+              <MenuList data-testid="options">
                 {filteredOptions.map((option) => (
                   <MenuItem
                     key={option.id}
