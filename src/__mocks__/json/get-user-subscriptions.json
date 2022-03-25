@@ -1,0 +1,166 @@
+{
+  "kind": "youtube#SubscriptionListResponse",
+  "etag": "dXmipP05ihdpocwAr0HhcjU8xP8",
+  "nextPageToken": "CAUQAA",
+  "pageInfo": {
+    "totalResults": 13,
+    "resultsPerPage": 5
+  },
+  "items": [
+    {
+      "kind": "youtube#subscription",
+      "etag": "uU8MgY4hE3oFtRoGYQzcGP3AIRI",
+      "id": "D8wmt2haoCxDD_9Au8GVXmJn1ZMXjHo_bW5AtcNYfRM",
+      "snippet": {
+        "publishedAt": "2022-03-25T01:33:09.784131Z",
+        "title": "Casimiro",
+        "description": "Canal do maior Nerdola do Brasil",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCKxn56z2qU-LJi3KRgMiaUg"
+        },
+        "channelId": "UC62daVmcGgcbXPjcZk1re1g",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQfehYM6bIKwG_YkhuMbTTN7KRZQkXNoMbTPWy_=s88-c-k-c0x00ffffff-no-rj"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQfehYM6bIKwG_YkhuMbTTN7KRZQkXNoMbTPWy_=s240-c-k-c0x00ffffff-no-rj"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQfehYM6bIKwG_YkhuMbTTN7KRZQkXNoMbTPWy_=s800-c-k-c0x00ffffff-no-rj"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 290,
+        "newItemCount": 0,
+        "activityType": "all"
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "0UgVOHVRwlGyE6Gkw-QdeVgaW-w",
+      "id": "D8wmt2haoCxDD_9Au8GVXia7WPCgYTA2CwOzGnt2nOU",
+      "snippet": {
+        "publishedAt": "2022-03-25T01:33:05.619906Z",
+        "title": "Cortes do Casimito [OFICIAL]",
+        "description": "Cortes da live do Casimiro!",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UC4aiJNDUviw_vMhdCq5Kq1Q"
+        },
+        "channelId": "UC62daVmcGgcbXPjcZk1re1g",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLTLJ9lYair3rrci40L27rAysV_lUblxDzW-NNV-=s88-c-k-c0x00ffffff-no-rj"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLTLJ9lYair3rrci40L27rAysV_lUblxDzW-NNV-=s240-c-k-c0x00ffffff-no-rj"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLTLJ9lYair3rrci40L27rAysV_lUblxDzW-NNV-=s800-c-k-c0x00ffffff-no-rj"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 2520,
+        "newItemCount": 0,
+        "activityType": "all"
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "SHrp48wkSBLHY103SrBo1zgOLxo",
+      "id": "D8wmt2haoCzNz9UcRe6D3OHweQ922Qn7x0R3V6vlFxM",
+      "snippet": {
+        "publishedAt": "2021-09-13T17:12:44.666198Z",
+        "title": "LiveOverflow",
+        "description": "just a wannabe hacker... making videos about various IT security topics and participating in hacking competitions.\n\n-=[ ❤️ Support me ]=-\n\nPatreon per Video: https://www.patreon.com/join/liveoverflow\nYouTube Membership per Month: https://www.youtube.com/channel/UClcE-kVhqyiHCcjYwcpfj9w/join\n\n-=[ 📄 Imprint ]=-\n\nSecurity Flag GmbH\nCelsiusstr. 72\n12207 Berlin\nGermany",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UClcE-kVhqyiHCcjYwcpfj9w"
+        },
+        "channelId": "UC62daVmcGgcbXPjcZk1re1g",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQphMy4hEgIO2Le8ZOrgcWtEuOFz66qe-WeXt-nog=s88-c-k-c0x00ffffff-no-rj"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQphMy4hEgIO2Le8ZOrgcWtEuOFz66qe-WeXt-nog=s240-c-k-c0x00ffffff-no-rj"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQphMy4hEgIO2Le8ZOrgcWtEuOFz66qe-WeXt-nog=s800-c-k-c0x00ffffff-no-rj"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 356,
+        "newItemCount": 1,
+        "activityType": "all"
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "Y1G20k7eUbbMJ3ODVpGSmcM-H6o",
+      "id": "D8wmt2haoCzNz9UcRe6D3G2O4ucO2gEgD8IlKwChWWo",
+      "snippet": {
+        "publishedAt": "2021-09-13T22:16:54.828579Z",
+        "title": "Ryan Ries",
+        "description": "",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCKLEzyrhO8Qj-Dqk-xjF3ew"
+        },
+        "channelId": "UC62daVmcGgcbXPjcZk1re1g",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLStrQmckoQmSCfIwJMpQwrossumwSq-wXP5I0qggg=s88-c-k-c0x00ffffff-no-rj"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLStrQmckoQmSCfIwJMpQwrossumwSq-wXP5I0qggg=s240-c-k-c0x00ffffff-no-rj"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLStrQmckoQmSCfIwJMpQwrossumwSq-wXP5I0qggg=s800-c-k-c0x00ffffff-no-rj"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 70,
+        "newItemCount": 0,
+        "activityType": "all"
+      }
+    },
+    {
+      "kind": "youtube#subscription",
+      "etag": "JgDsBsUYX3C8Wmz03Rrr1ymLBLU",
+      "id": "D8wmt2haoCyDNUPvFqLS-eiivbA7Sx7SPdd96oNgkxw",
+      "snippet": {
+        "publishedAt": "2021-05-05T23:05:27.245476Z",
+        "title": "Guiding Digital",
+        "description": "Guiding Digital brings you weekly videos on website best practices.  Topics include web development, SEO, and digital marketing.  If you are a new developer, marketer, or small business owner trying to soak up all you can about the web or an experienced person trying to refine your skills, this channel is for you.",
+        "resourceId": {
+          "kind": "youtube#channel",
+          "channelId": "UCpJHkuyhTtGrelk9kVDVUlg"
+        },
+        "channelId": "UC62daVmcGgcbXPjcZk1re1g",
+        "thumbnails": {
+          "default": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQrP2BxnbJXKRQcZuoa_DW_KC5SzwcrnDVP3_0C=s88-c-k-c0x00ffffff-no-rj"
+          },
+          "medium": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQrP2BxnbJXKRQcZuoa_DW_KC5SzwcrnDVP3_0C=s240-c-k-c0x00ffffff-no-rj"
+          },
+          "high": {
+            "url": "https://yt3.ggpht.com/ytc/AKedOLQrP2BxnbJXKRQcZuoa_DW_KC5SzwcrnDVP3_0C=s800-c-k-c0x00ffffff-no-rj"
+          }
+        }
+      },
+      "contentDetails": {
+        "totalItemCount": 23,
+        "newItemCount": 0,
+        "activityType": "all"
+      }
+    }
+  ]
+}
