@@ -5,14 +5,18 @@ import { useTimeout, useUx } from 'shared/hooks';
 
 import styles from './styles.module.scss';
 
-function Alert() {
+interface IAlert {
+  timeout?: number;
+}
+
+function Alert({ timeout = 5000 }: IAlert) {
   const {
     state: { alert },
     actions: { clearAlert },
   } = useUx();
   const { start, clear } = useTimeout({
     callback: () => clearAlert(),
-    timeout: 5000,
+    timeout,
     startNow: false,
   });
 
@@ -28,6 +32,7 @@ function Alert() {
   return (
     <Fade in={alert.show} className={styles.alert}>
       <MaterialAlert
+        data-testid="alert"
         onClose={() => {
           clear();
           clearAlert();

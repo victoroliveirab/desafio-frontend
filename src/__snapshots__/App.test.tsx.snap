@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-filledSuccess MuiAlert-filled alert css-camg44-MuiPaper-root-MuiAlert-root"
+        data-testid="alert"
         role="alert"
         style="opacity: 0; visibility: hidden;"
       >
@@ -692,6 +693,7 @@ Object {
   "container": <div>
     <div
       class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation0 MuiAlert-root MuiAlert-filledSuccess MuiAlert-filled alert css-camg44-MuiPaper-root-MuiAlert-root"
+      data-testid="alert"
       role="alert"
       style="opacity: 0; visibility: hidden;"
     >
