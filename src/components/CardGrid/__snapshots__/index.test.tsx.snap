@@ -7,13 +7,89 @@ Object {
     <div>
       <div
         class="grid"
-      />
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="thumb-wrapper"
+            data-testid="thumb-wrapper"
+          >
+            <img
+              alt="$1 VS $29,000 House!"
+              class="thumb"
+              src="https://i.ytimg.com/vi/1lIi1txDVzo/default.jpg"
+            />
+          </div>
+          <div
+            class="info"
+          >
+            <div
+              class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+            >
+              <img
+                alt="video"
+                class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+                src="https://i.ytimg.com/vi/1lIi1txDVzo/default.jpg"
+              />
+            </div>
+            <div
+              class="info__text"
+            >
+              <h2>
+                $1 VS $29,000 House!
+              </h2>
+              <h4>
+                MrBeast Gaming • 7.9M views
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
     <div
       class="grid"
-    />
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="thumb-wrapper"
+          data-testid="thumb-wrapper"
+        >
+          <img
+            alt="$1 VS $29,000 House!"
+            class="thumb"
+            src="https://i.ytimg.com/vi/1lIi1txDVzo/default.jpg"
+          />
+        </div>
+        <div
+          class="info"
+        >
+          <div
+            class="MuiAvatar-root MuiAvatar-circular css-1wlk0hk-MuiAvatar-root"
+          >
+            <img
+              alt="video"
+              class="MuiAvatar-img css-1pqm26d-MuiAvatar-img"
+              src="https://i.ytimg.com/vi/1lIi1txDVzo/default.jpg"
+            />
+          </div>
+          <div
+            class="info__text"
+          >
+            <h2>
+              $1 VS $29,000 House!
+            </h2>
+            <h4>
+              MrBeast Gaming • 7.9M views
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
