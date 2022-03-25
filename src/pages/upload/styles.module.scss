@@ -1,0 +1,27 @@
+@import 'assets/sass/variables.scss';
+
+.video {
+  max-width: calc(100vw - 2 * 20px);
+  max-height: calc(100vh - 300px);
+
+  &-wrapper {
+    display: flex;
+    justify-content: center;
+    max-width: calc(100vw - 2 * 20px);
+    max-height: calc(100vh - 300px);
+    width: auto;
+    height: auto;
+    margin-top: 15px;
+  }
+}
+
+.form {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 100vw;
+  max-width: 360px;
+
+  & > * + * {
+    margin-top: 15px;
+  }
+}

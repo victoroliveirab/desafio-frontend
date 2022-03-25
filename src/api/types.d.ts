@@ -11,6 +11,11 @@ export type YoutubeApi<T> = {
   };
 };
 
+export type YoutubeUploadVideo = {
+  id: string;
+  kind: 'youtube#video';
+};
+
 export interface YoutubeQuery {
   chart?: string;
   channelId?: string;

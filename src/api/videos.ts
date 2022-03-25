@@ -1,6 +1,6 @@
 import { AxiosInstance } from 'axios';
 import buildQuery from 'shared/helpers/api/youtube';
-import type { YoutubeApi } from './types';
+import type { YoutubeApi, YoutubeUploadVideo } from './types';
 
 const prefix = 'https://youtube.googleapis.com/youtube/v3';
 
@@ -52,11 +52,20 @@ export interface YoutubeVideo {
   statistics?: VideoStatistics;
 }
 
+export interface YoutubeCategory {
+  id: string;
+  snippet: {
+    title: string;
+  };
+}
+
+export type GetCategories = YoutubeApi<YoutubeCategory>;
 export type GetMostPopular = YoutubeApi<YoutubeVideo>;
 export type GetByPageToken = YoutubeApi<YoutubeVideo>;
 export type GetByKeyword = YoutubeApi<YoutubeVideo>;
 export type GetByChannelId = YoutubeApi<YoutubeVideo>;
 export type GetById = YoutubeApi<YoutubeVideo>;
+export type UploadVideo = YoutubeUploadVideo;
 
 export default function videosService(api: AxiosInstance) {
   return {
@@ -94,6 +103,40 @@ export default function videosService(api: AxiosInstance) {
           id: [id],
           part: ['contentDetails', 'snippet', 'statistics'],
         })}`
+      ),
+    getCategories: async () =>
+      api.get<GetCategories>(
+        `https://www.googleapis.com/youtube/v3/videoCategories?${buildQuery({
+          part: ['snippet'],
+          regionCode: 'US',
+        })}`
+      ),
+    uploadVideo: async (video: File) => {
+      const formData = new FormData();
+      formData.append('file', video);
+      return api.post<UploadVideo>(
+        'https://www.googleapis.com/upload/youtube/v3/videos',
+        formData
+      );
+    },
+    uploadVideoInfo: async (
+      id: string,
+      title: string,
+      description: string,
+      categoryId: string
+    ) =>
+      api.put(
+        `https://www.googleapis.com/youtube/v3/videos?${buildQuery({
+          part: ['snippet'],
+        })}`,
+        {
+          id,
+          snippet: {
+            title,
+            description,
+            categoryId,
+          },
+        }
       ),
   };
 }
