@@ -32,6 +32,7 @@
 
 ## Design Choices
 
+- Mobile-first
 - Every component must be designed to allow testing in an isolated environment;
 - Every component must be written in Typescript;
 - A library must be installed if and only if its logic cannot be written easily;
