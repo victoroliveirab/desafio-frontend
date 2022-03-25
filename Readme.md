@@ -3,17 +3,24 @@
 ## Folder structure
 
 📂**mocks** &rarr; contains JavaScript objects and JSON samples to aid tests
+
 📂api &rarr; contains the main instance of axios and available services
+
 📂assets &rarr; contains images and stylesheets available globally
+
 📂components &rarr; contains the generic JSX components available to other components and pages;
+
 📂features &rarr; contains components which implement specific versions of one or more components;
+
 📂lib &rarr; contains groups of logic which could be by themselves a vendor library;
+
 📂pages &rarr; contains the pages to be rendered by the routing mechanism;
+
 📂shared &rarr; contains shared logic
 
-> 📂helpers &rarr; utility functions to avoid bloating main files and generally used by multiple elements;
-> 📂hooks &rarr; collection of hooks to be used throughout the app
-> 📂providers &rarr; React Context API providers
+> 📂helpers &rarr; utility functions to avoid bloating main files and generally used by multiple elements;<br />
+> 📂hooks &rarr; collection of hooks to be used throughout the app;<br/>
+> 📂providers &rarr; React Context API providers.
 
 ## Libraries and Packages
 
