@@ -15,7 +15,7 @@ import styles from './style.module.scss';
 function Header() {
   const {
     state: { user },
-    actions: { setUser },
+    actions: { logout, setUser },
   } = useAuth();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
   const navigate = useNavigate();
@@ -31,6 +31,11 @@ function Header() {
     setUser(userDetails);
     api.defaults.headers.common.Authorization = `Bearer ${token}`;
   }, [setUser]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <header>
@@ -54,7 +59,7 @@ function Header() {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem>Logout</MenuItem>
+        <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
       <hr />
       <div className={styles.row}>

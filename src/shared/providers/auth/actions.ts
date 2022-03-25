@@ -2,6 +2,7 @@
 import type { IAuthUser } from './types';
 
 export enum ActionsTypes {
+  CLEAR,
   SET_TOKEN,
   SET_USER,
 }
@@ -14,6 +15,9 @@ type Action =
   | {
       type: ActionsTypes.SET_USER;
       payload: IAuthUser;
+    }
+  | {
+      type: ActionsTypes.CLEAR;
     };
 
 export default Action;

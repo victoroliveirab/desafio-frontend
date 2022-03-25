@@ -9,3 +9,7 @@ export function retrieveItem<T>(key: string, defaultValue: T) {
   if (!item) return defaultValue;
   return <T>JSON.parse(item);
 }
+
+export function clearItem(key: string) {
+  localStorage.removeItem(`${PREFIX}${key}`);
+}

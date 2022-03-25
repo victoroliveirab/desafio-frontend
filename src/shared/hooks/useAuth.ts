@@ -1,4 +1,5 @@
 import { useCallback, useContext, useMemo } from 'react';
+import { clearItem } from 'shared/helpers/local-storage';
 import { AuthStateContext, AuthDispatchContext } from 'shared/providers/auth';
 import { ActionsTypes } from 'shared/providers/auth/actions';
 import type { IAuthUser } from 'shared/providers/auth/types';
@@ -32,12 +33,20 @@ export default function useAuth() {
     [dispatch]
   );
 
+  const logout = useCallback(() => {
+    clearItem('google-user');
+    dispatch({
+      type: ActionsTypes.CLEAR,
+    });
+  }, [dispatch]);
+
   const actions = useMemo(
     () => ({
+      logout,
       setToken,
       setUser,
     }),
-    [setToken, setUser]
+    [logout, setToken, setUser]
   );
 
   return { state, actions };
