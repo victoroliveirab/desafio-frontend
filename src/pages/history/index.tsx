@@ -6,7 +6,7 @@ function HistoryPage() {
   return hasVideos ? (
     <VideosGrid videos={videosStorage.entries} />
   ) : (
-    <p>
+    <p className="text-center">
       You haven&apos;t watched a video for a while. Why don&apos;t you pick
       something up and chill?
     </p>
