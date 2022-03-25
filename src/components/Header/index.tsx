@@ -1,5 +1,5 @@
 import { MouseEvent, useEffect, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
@@ -18,6 +18,7 @@ function Header() {
     actions: { setUser },
   } = useAuth();
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
+  const navigate = useNavigate();
   const handleAvatarClick = (e: MouseEvent<HTMLElement>) => {
     setAnchorEl(e.currentTarget);
   };
@@ -34,7 +35,7 @@ function Header() {
   return (
     <header>
       <div className={styles.row}>
-        <div className={styles['header-logo']}>
+        <div className={styles['header-logo']} onClick={() => navigate('/')}>
           <Logo />
           <h1>FakeTube</h1>
         </div>
