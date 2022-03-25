@@ -5,7 +5,7 @@ import { YoutubeVideoId } from 'api/videos';
 
 export interface IInfiniteScrollYoutube {
   state: {
-    data: unknown[];
+    data?: unknown[];
   };
   actions: {
     clearToken: () => void;
@@ -22,5 +22,6 @@ export type InfiniteScrollYoutubeProviderService<T extends IWithId> = (
 
 export interface IInfiniteScrollYoutubeProvider<T> {
   children: ReactNode;
+  noStartEmpty?: boolean;
   service?: InfiniteScrollYoutubeProviderService<T>;
 }

@@ -10,7 +10,7 @@ import type {
 export const InfiniteScrollYoutubeContext =
   createContext<IInfiniteScrollYoutube>({
     state: {
-      data: [],
+      data: undefined,
     },
     actions: {
       clearToken: () => undefined,
@@ -34,14 +34,18 @@ function avoidDuplicateItems<T extends IWithId>(
 
 function InfiniteScrollYoutubeProvider<T extends IWithId>({
   children,
+  noStartEmpty = false,
   service,
 }: IInfiniteScrollYoutubeProvider<T>) {
+  const startEmpty = !noStartEmpty;
   const [available, trigger] = useThrottle({
     delay: 500,
   });
   const [intersecting, setIntersecting] = useState(false);
   const [nextPageToken, setNextPageToken] = useState('');
-  const [data, setData] = useState<T[]>([]);
+  const [data, setData] = useState<T[] | undefined>(
+    startEmpty ? [] : undefined
+  );
   const [firstRequest, setFirstRequest] = useState(true);
   const [pageable, setPageable] = useState(false);
 
@@ -62,7 +66,7 @@ function InfiniteScrollYoutubeProvider<T extends IWithId>({
     service(nextPageToken).then(({ data: responseData }) => {
       trigger();
       setData((currentData) =>
-        avoidDuplicateItems(currentData, responseData.items)
+        avoidDuplicateItems(currentData || [], responseData.items)
       );
       setNextPageToken(responseData.nextPageToken);
     });

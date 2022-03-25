@@ -23,7 +23,7 @@ function HomePage({ callback }: IHomePage) {
   const videos = data as YoutubeVideo[];
 
   useEffect(() => {
-    if (data.length >= MAX_ELEMENTS) callback();
+    if (!data || data.length >= MAX_ELEMENTS) callback();
     else callback(getMostPopular);
   }, [callback, data]);
 
