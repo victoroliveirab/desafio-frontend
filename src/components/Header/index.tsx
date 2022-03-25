@@ -8,22 +8,9 @@ import MenuItem from '@mui/material/MenuItem';
 import api from 'api';
 import GoogleLogin from 'components/GoogleLogin';
 import { useAuth } from 'shared/hooks';
-import type { IAuthPersisted, IAuthUser } from 'shared/providers/auth/types';
-import { retrieveItem } from 'shared/helpers/local-storage';
+import { getAlreadyLoggedUser } from 'shared/helpers/user';
 import { ReactComponent as Logo } from 'assets/images/logo.svg';
 import styles from './style.module.scss';
-
-function getAlreadyLoggedUser(): { token: string; user: IAuthUser } | null {
-  const alreadyLoggedUser = retrieveItem('google-user', undefined);
-  if (!alreadyLoggedUser) return null;
-  const currentUser = alreadyLoggedUser as IAuthPersisted;
-  const { expiration, token, user } = currentUser;
-  if (new Date(expiration) <= new Date() || !user || !token) return null;
-  return {
-    token,
-    user,
-  };
-}
 
 function Header() {
   const {

@@ -1,5 +1,6 @@
 import { Navigate, Routes, Route, useLocation } from 'react-router-dom';
 import { useAuthState, useUx } from 'shared/hooks';
+import { getAlreadyLoggedUser } from 'shared/helpers/user';
 import { immediate } from 'shared/helpers/timers';
 import ChannelPage from './channel';
 import ChannelsPage from './channels';
@@ -15,7 +16,8 @@ function PrivatePage({ children }: { children: JSX.Element }) {
   const {
     actions: { setAlert },
   } = useUx();
-  if (!user) {
+  const alreadyLoggedUser = getAlreadyLoggedUser();
+  if (!user && !alreadyLoggedUser) {
     immediate(() =>
       setAlert({
         message: 'You must be logged in to access this resource',
