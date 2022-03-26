@@ -44,8 +44,9 @@
 - Because this is a SPA with no backend, the OAuth2 access token is being stored on local storage to persist user's session after a page refresh. This is a security vulnerability and with a backend a HttpOnly cookie should be the strategy to use;
 - The initial idea was to develop an application which could fetch from multiple sources and provide a common user interface. This concept got lost in the middle of the way, so some interfaces which rely on `YoutubeVideo`, such as `IVideosGrid` should instead rely on a interface which for every source we could implement a DTO;
 - The loading state only awaits for the JSON data fetching to complete. It should, however, await until the thumbnail is also loaded;
-- The channels' avatars are not loaded, even though the `Card` component has a place to render it. This is because Google doesn't send the channel's avatar URL when a video resource is fetched. I would have to manually make 12 (the page size I chose throughout the app) requests just to render the avatars, which would eventually extinguish my API daily quota.
-- Material-UI, which was the chosen components library, has a CSS-in-JS philosophy via methods such as `styled` and `makeStyles`. I chose however to use Sass module files to customize components;
+- The channels' avatars are not loaded, even though the `Card` component has a place to render it. This is because Google doesn't send the channel's avatar URL when a video resource is fetched. I would have to manually make 12 (the page size I chose throughout the app) requests just to render the avatars, which would eventually extinguish my API daily quota;
+- No validation on video's upload form;
+- Material-UI, which was the chosen components library, has a CSS-in-JS philosophy via methods such as `styled` and `makeStyles`. I chose however to use Sass module files to customize components.
 
 ## Screenshots
 
