@@ -1,4 +1,12 @@
-@import 'assets/sass/variables.scss';
+@import 'assets/sass/resources.scss';
+
+.input {
+  @include small-screen {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 
 .video {
   max-width: calc(100vw - 2 * 20px);

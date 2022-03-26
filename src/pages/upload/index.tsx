@@ -44,7 +44,9 @@ function UploadPage() {
 
   return (
     <>
-      <InputFile file={file} setter={setFile} type="video" />
+      <div className={styles.input}>
+        <InputFile file={file} setter={setFile} type="video" />
+      </div>
       {filePreview && (
         <div className={styles['video-wrapper']}>
           <video className={styles.video} src={filePreview} controls />
