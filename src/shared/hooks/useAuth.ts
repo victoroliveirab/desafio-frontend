@@ -1,4 +1,5 @@
 import { useCallback, useContext, useMemo } from 'react';
+import api from 'api';
 import { clearItem } from 'shared/helpers/local-storage';
 import { AuthStateContext, AuthDispatchContext } from 'shared/providers/auth';
 import { ActionsTypes } from 'shared/providers/auth/actions';
@@ -35,6 +36,7 @@ export default function useAuth() {
 
   const logout = useCallback(() => {
     clearItem('google-user');
+    delete api.defaults.headers.common.Authorization;
     dispatch({
       type: ActionsTypes.CLEAR,
     });
