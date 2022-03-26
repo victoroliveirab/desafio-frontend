@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/media-has-caption */
 import { useMemo, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
@@ -9,30 +10,48 @@ import TextField from '@mui/material/TextField';
 import { InputFile } from 'components';
 import { videosServices } from 'api';
 import type { YoutubeCategory } from 'api/videos';
+import { useUx } from 'shared/hooks';
 
 import styles from './styles.module.scss';
 
 function UploadPage() {
+  const {
+    actions: { setAlert },
+  } = useUx();
   const [file, setFile] = useState<File | null>(null);
   const filePreview = useMemo(() => file && URL.createObjectURL(file), [file]);
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [categories, setCategories] = useState<YoutubeCategory[]>([]);
-  const [categoryId, setCategoryId] = useState<string | null>(null);
+  const [categoryId, setCategoryId] = useState<string>('');
+
+  const navigate = useNavigate();
 
   const handleSubmit = async () => {
     if (!file || !categoryId) return;
     const videoTitle = title || 'unknown';
     const videoDescription = description || 'unknown';
-    const {
-      data: { id },
-    } = await videosServices.uploadVideo(file);
-    videosServices.uploadVideoInfo(
-      id,
-      videoTitle,
-      videoDescription,
-      categoryId
-    );
+    try {
+      const {
+        data: { id },
+      } = await videosServices.uploadVideo(file);
+      await videosServices.uploadVideoInfo(
+        id,
+        videoTitle,
+        videoDescription,
+        categoryId
+      );
+      setAlert({
+        message: 'Video uploaded successfully!',
+        type: 'success',
+      });
+      navigate(`/videos/${id}`);
+    } catch (_) {
+      setAlert({
+        message: 'Video upload has failed. Try again later.',
+        type: 'error',
+      });
+    }
   };
 
   useEffect(() => {
